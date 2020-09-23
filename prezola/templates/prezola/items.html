@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+    {% include "prezola/styles.html" %}
+</head>
+<body>
+<div class='container'>
+    <div class='mt10'>
+        <a class='button' href='/add'>Add new item</a>
+        <a class='button' href='/report'>View report</a>
+    </div>
+    <div class='mt30 title'>Gift items</div>
+    {% for gift_item in gift_list.all %}
+        <div class='gift_item'>
+            <div>Name: {{ gift_item.name }}</div>
+            <div>Brand: {{ gift_item.brand }}</div>
+            <div>Price: {{ gift_item.price }}</div>
+            <div>Quantity: {{ gift_item.in_stock_quantity }}</div>
+            <div class='mt10'>
+                <span class='button'><a href="{% url 'delete' gift_item.id %}">Delete</a></span>
+                {% if gift_item.in_stock_quantity %}
+                    <a class='button' href="{% url 'order' gift_item.id %}">Purchase</a>
+                {% else %}
+                    <span class='button'>Sold out</span>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+</body>
+</html>

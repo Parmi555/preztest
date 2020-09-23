@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<head>
+    {% include "prezola/styles.html" %}
+</head>
+<body>
+<div class='container'>
+    <div class='mt30 title'>Purchased gifts</div>
+    {% for gift in sold_items.all %}
+        <div class='gift_item'>
+            <div>Name: {{ gift.item_id.name }}</div>
+            <div>Buyer name: {{ gift.buyer_name }}</div>
+            <div>Address: {{ gift.address }}</div>
+            <div>Quantity: {{ gift.quantity }}</div>
+            <div>Order date: {{ gift.order_date }}</div>
+        </div>
+    {% endfor %}
+    <div class='mt30 title'>Not purchased gifts</div>
+    {% for gift in unsold_items.all %}
+        <div class='gift_item'>
+            <div>Name: {{ gift.name }}</div>
+            <div>Buyer name: {{ gift.brand }}</div>
+            <div>Address: {{ gift.price }}</div>
+            <div>Quantity: {{ gift.in_stock_quantity }}</div>
+        </div>
+    {% endfor %}
+</div>
+</body>
+</html>
